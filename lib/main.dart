@@ -40,8 +40,12 @@ class Home extends StatelessWidget {
     const oneSec = Duration(milliseconds: 800);
     Timer(oneSec, (() => emojiChange()));
 
-    return Scaffold(
-      body: Body(),
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Body(),
+      ),
     );
   }
 }

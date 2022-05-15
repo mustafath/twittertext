@@ -91,16 +91,21 @@ class MainScope extends StatelessWidget {
                   height: 50,
                   width: 200,
                   color: Colors.white,
-                  child: TextField(
-                      controller: emoji,
-                      maxLines: 4,
-                      textAlign: TextAlign.center,
-                      autocorrect: false,
-                      onSubmitted: (value) => print("hello"),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Emojini seç",
-                      )),
+                  child: SingleChildScrollView(
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
+                    child: TextField(
+                        controller: emoji,
+                        maxLines: 4,
+                        textAlign: TextAlign.center,
+                        autocorrect: false,
+                        onSubmitted: (value) =>
+                            FocusManager.instance.primaryFocus?.unfocus(),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Emojini seç",
+                        )),
+                  ),
                 ),
               ),
               Container(
