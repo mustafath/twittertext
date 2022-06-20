@@ -45,7 +45,12 @@ class Body extends StatefulWidget {
 final input = TextEditingController();
 final emoji = TextEditingController();
 
-class MainScope extends StatelessWidget {
+class MainScope extends StatefulWidget {
+  @override
+  State<MainScope> createState() => _MainScopeState();
+}
+
+class _MainScopeState extends State<MainScope> {
   @override
   Widget build(BuildContext context) {
     final imageProvider = context.watch<ImagesProvider>();
@@ -53,6 +58,7 @@ class MainScope extends StatelessWidget {
 
     late String newText;
 
+    var olusturRenk = Colors.white;
     return ClipRRect(
       borderRadius: BorderRadius.circular(30),
       child: Container(
@@ -96,7 +102,6 @@ class MainScope extends StatelessWidget {
                         ScrollViewKeyboardDismissBehavior.onDrag,
                     child: TextField(
                         controller: emoji,
-                        maxLines: 4,
                         textAlign: TextAlign.center,
                         autocorrect: false,
                         onSubmitted: (value) =>
@@ -111,12 +116,15 @@ class MainScope extends StatelessWidget {
               Container(
                 height: 20,
               ),
-              GestureDetector(
+              InkWell(
+                onHighlightChanged: (value) => setState(() {
+                  olusturRenk = Colors.red;
+                }),
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
                     child: Container(
                         alignment: Alignment.center,
-                        color: Colors.white,
+                        color: olusturRenk,
                         width: 100,
                         height: 30,
                         child: Text("Oluştur"))),
